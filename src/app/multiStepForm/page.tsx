@@ -91,20 +91,20 @@ export default function MultiStepForm() {
 
   const Title =
     currentStepIndex === 0
-      ? "Account Information"
+      ? "Account"
       : currentStepIndex === 1
-      ? "Address Information"
+      ? "Address"
       : "Preferences";
 
   return (
     <>
       <div className="h-screen bg-gray-200 text-black flex justify-center items-center">
         <div className="w-[450px] h-[600] p-2">
-          <h1 className="flex justify-center items-center text-[#343A40]">
+          <h1 className="flex justify-center items-center text-[#343A40] font-bold text-2xl mb-5">
             {Title}
           </h1>
           <form className="bg-white p-2 rounded-md" onSubmit={onSubmit}>
-            <div className="bg-gray-200">
+            <div className="bg-gray-200 flex justify-center items-center">
               {currentStepIndex + 1}/{steps.length}
             </div>
             <div>{step}</div>
