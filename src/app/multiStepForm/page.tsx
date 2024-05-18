@@ -41,9 +41,9 @@ const InitialData: FormData = {
   zipCode: "",
   company: "",
   phoneNumber: "",
-  wantsNotifications: "",
-  shareInformation: "",
-  notificationPreferences: "",
+  wantsNotifications: "No",
+  shareInformation: "No",
+  notificationPreferences: "Email",
 };
 
 export default function MultiStepForm() {
@@ -61,21 +61,32 @@ export default function MultiStepForm() {
     isLastStep,
     next,
     previous,
-    goToStep,
-    reset,
   } = useMultiStepForm([
     <Account {...inputData} updateFields={updateFields}/>,
     <Address {...inputData} updateFields={updateFields}/>,
     <Preferences {...inputData} updateFields={updateFields}/>,
   ]);
 
-
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!isLastStep) return next();
+    if (isLastStep) {
+      try {
+        const response = await fetch("api/register", {
+          method: "POST",
+          body: JSON.stringify(inputData),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
     alert("Successfully registered");
-    console.log(inputData)
-    reset();
+    console.log(inputData);
   };
 
   const Title =
@@ -97,7 +108,8 @@ export default function MultiStepForm() {
               {currentStepIndex + 1}/{steps.length}
             </div>
             <div>{step}</div>
-            <div className="flex justify-between">
+            <div className={`mt-2 flex ${isFirstStep ? 'justify-end' : 'justify-between'}`}>
+
               {!isFirstStep && (
                 <button
                   type="button"

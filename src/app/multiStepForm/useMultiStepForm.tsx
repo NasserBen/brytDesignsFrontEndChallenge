@@ -21,14 +21,6 @@ export default function useMultiStepForm(steps: ReactElement[]) {
     });
   };
 
-  const goToStep = (index: number) => {
-    setCurrentStepIndex(index);
-  };
-
-  const reset = () => {
-    setCurrentStepIndex(0);
-  };
-
   return {
     currentStepIndex,
     step: steps[currentStepIndex],
@@ -37,7 +29,5 @@ export default function useMultiStepForm(steps: ReactElement[]) {
     isLastStep: currentStepIndex === steps.length - 1,
     next,
     previous,
-    goToStep,
-    reset,
   };
 }

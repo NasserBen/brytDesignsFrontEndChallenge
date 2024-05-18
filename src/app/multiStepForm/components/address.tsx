@@ -75,21 +75,27 @@ const Address: React.FC<AddressProps> = ({
       </div>
 
       <div className="flex flex-col">
-        <label className="text-sm font-medium text-gray-700 mb-1">
-          Country *
-        </label>
-        <div className="flex items-center bg-gray-200 rounded p-2">
-          <FontAwesomeIcon icon={faGlobe} className="mr-2 text-gray-600" />
-          <input
-            type="text"
-            placeholder="Placeholder"
-            value={country}
-            required={true}
-            onChange={(e) => updateFields({ country: e.target.value })}
-            className="bg-transparent outline-none flex-grow"
-          />
-        </div>
+      <label className="text-sm font-medium text-gray-700 mb-1">
+        Country *
+      </label>
+      <div className="flex items-center bg-gray-200 rounded p-2">
+        <FontAwesomeIcon icon={faGlobe} className="mr-2 text-gray-600" />
+        <select
+          value={country}
+          onChange={(e) => updateFields({ country: e.target.value })}
+          className="bg-transparent outline-none flex-grow"
+          required
+        >
+          <option value="">Select Country</option>
+          <option value="US">United States</option>
+          <option value="CA">Canada</option>
+          <option value="UK">United Kingdom</option>
+          <option value="AU">Australia</option>
+          <option value="DE">Germany</option>
+          <option value="FR">France</option>
+        </select>
       </div>
+    </div>
 
       <div className="flex flex-col">
         <label className="text-sm font-medium text-gray-700 mb-1">City *</label>
@@ -149,7 +155,7 @@ const Address: React.FC<AddressProps> = ({
             type="text"
             placeholder="Placeholder"
             value={phoneNumber}
-            onChange={(e) => updateFields({ company: e.target.value })}
+            onChange={(e) => updateFields({ phoneNumber: e.target.value })}
             className="bg-transparent outline-none flex-grow"
           />
         </div>

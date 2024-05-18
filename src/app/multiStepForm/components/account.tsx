@@ -29,9 +29,9 @@ export default function Account({
   updateFields,
 }: AccountProps) {
   return (
-    <div className="max-w-md mx-auto mt-10 space-y-6">
-      <div className="flex space-x-4">
-        <div className="flex flex-col w-1/2">
+    <div className="max-w-md mx-auto mt-10 space-y-4">
+      <div className="flex">
+        <div className="flex flex-col w-1/2 mr-1">
           <label className="text-sm font-medium text-gray-700 mb-1">
             First Name
           </label>
@@ -96,39 +96,44 @@ export default function Account({
           />
         </div>
       </div>
-      <div className="flex flex-col">
-        <label className="text-sm font-medium text-gray-700 mb-1">
-          Password *
-        </label>
-        <div className="flex items-center bg-gray-200 rounded p-2">
-          <FontAwesomeIcon icon={faKey} className="mr-2 text-gray-600" />
-          <input
-            type="password"
-            placeholder="Placeholder"
-            className="bg-transparent outline-none flex-grow"
-            value={password}
-            required={true}
-            onChange={(e) => updateFields({ password: e.target.value })}
-          />
+
+      <div className="flex justify-between">
+        <div className="flex flex-col w-1/2 mr-1">
+          <label className="text-sm font-medium text-gray-700 mb-1">
+            Password *
+          </label>
+          <div className="flex items-center bg-gray-200 rounded p-2">
+            <FontAwesomeIcon icon={faKey} className="mr-2 text-gray-600" />
+            <input
+              type="password"
+              placeholder="Placeholder"
+              className="bg-transparent outline-none flex-grow"
+              value={password}
+              required={true}
+              onChange={(e) => updateFields({ password: e.target.value })}
+            />
+          </div>
         </div>
-      </div>
-      <div className="flex flex-col">
-        <label className="text-sm font-medium text-gray-700 mb-1">
-          Confirm Password *
-        </label>
-        <div className="flex items-center bg-gray-200 rounded p-2">
-          <FontAwesomeIcon
-            icon={faFingerprint}
-            className="mr-2 text-gray-600"
-          />
-          <input
-            type="password"
-            placeholder="Placeholder"
-            className="bg-transparent outline-none flex-grow"
-            value={confirmPassword}
-            required={true}
-            onChange={(e) => updateFields({ confirmPassword: e.target.value })}
-          />
+        <div className="flex flex-col w-1/2">
+          <label className="text-sm font-medium text-gray-700 mb-1">
+            Confirm Password *
+          </label>
+          <div className="flex items-center bg-gray-200 rounded p-2">
+            <FontAwesomeIcon
+              icon={faFingerprint}
+              className="mr-2 text-gray-600"
+            />
+            <input
+              type="password"
+              placeholder="Placeholder"
+              className="bg-transparent outline-none flex-grow"
+              value={confirmPassword}
+              required={true}
+              onChange={(e) =>
+                updateFields({ confirmPassword: e.target.value })
+              }
+            />
+          </div>
         </div>
       </div>
     </div>
