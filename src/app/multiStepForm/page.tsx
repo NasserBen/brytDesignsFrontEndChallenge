@@ -48,6 +48,11 @@ const InitialData: FormData = {
 
 export default function MultiStepForm() {
   const [inputData, setInputData] = useState(InitialData);
+
+  function updateFields(fields : Partial<FormData>) {
+    setInputData((prev) => ({ ...prev, ...fields }));
+  }
+
   const {
     currentStepIndex,
     step,
@@ -59,15 +64,17 @@ export default function MultiStepForm() {
     goToStep,
     reset,
   } = useMultiStepForm([
-    <Account {...inputData} />,
-    <Address {...inputData} />,
-    <Preferences {...inputData} />,
+    <Account {...inputData} updateFields={updateFields}/>,
+    <Address {...inputData} updateFields={updateFields}/>,
+    <Preferences {...inputData} updateFields={updateFields}/>,
   ]);
+
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!isLastStep) return next();
     alert("Successfully registered");
+    console.log(inputData)
     reset();
   };
 

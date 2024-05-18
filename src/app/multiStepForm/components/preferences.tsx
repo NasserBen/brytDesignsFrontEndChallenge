@@ -1,23 +1,30 @@
 import React from "react";
 
-type PreferencesProps = {
+type UserData = {
   wantsNotifications: string;
   shareInformation: string;
   notificationPreferences: string;
+};
+
+type PreferencesProps = UserData & {
+  updateFields: (fields: Partial<UserData>) => void;
 };
 
 const Preferences: React.FC<PreferencesProps> = ({
   wantsNotifications,
   shareInformation,
   notificationPreferences,
+  updateFields
 }) => {
   return (
     <div className="max-w-md mx-auto mt-10 space-y-6">
       <div className="flex items-center">
         <input
           type="checkbox"
-          checked={wantsNotifications === "true"}
           className="mr-2 h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+          value={wantsNotifications}
+          checked={wantsNotifications === "yes"}
+          onChange={(e) => updateFields({ wantsNotifications: e.target.checked ? "yes" : "no" })}
         />
         <label className="text-sm font-medium text-gray-700">
           Send Notifications
@@ -26,8 +33,10 @@ const Preferences: React.FC<PreferencesProps> = ({
       <div className="flex items-center">
         <input
           type="checkbox"
-          checked={shareInformation === "true"}
           className="mr-2 h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+          value={shareInformation}
+          checked={shareInformation === "yes"}
+          onChange={(e) => updateFields({ shareInformation: e.target.checked ? "yes" : "no" })}
         />
         <label className="text-sm font-medium text-gray-700">
           Share information with related marketer
@@ -40,6 +49,7 @@ const Preferences: React.FC<PreferencesProps> = ({
         <select
           value={notificationPreferences}
           className="p-2 bg-gray-200 rounded outline-none"
+          onChange={(e) => updateFields({ notificationPreferences: e.target.value })}
         >
           <option value="text">Text</option>
           <option value="email">Email</option>

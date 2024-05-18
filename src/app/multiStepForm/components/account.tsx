@@ -7,13 +7,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-type AccountProps = {
+type UserData = {
   firstName: string;
   lastName: string;
   email: string;
   username: string;
   password: string;
   confirmPassword: string;
+};
+type AccountProps = UserData & {
+  updateFields: (fields: Partial<UserData>) => void;
 };
 
 export default function Account({
@@ -23,6 +26,7 @@ export default function Account({
   username,
   password,
   confirmPassword,
+  updateFields,
 }: AccountProps) {
   return (
     <div className="max-w-md mx-auto mt-10 space-y-6">
@@ -38,6 +42,8 @@ export default function Account({
               placeholder="Placeholder"
               className="bg-transparent outline-none flex-grow"
               value={firstName}
+              required={true}
+              onChange={(e) => updateFields({ firstName: e.target.value })}
             />
           </div>
         </div>
@@ -52,6 +58,8 @@ export default function Account({
               placeholder="Placeholder"
               className="bg-transparent outline-none flex-grow"
               value={lastName}
+              required={true}
+              onChange={(e) => updateFields({ lastName: e.target.value })}
             />
           </div>
         </div>
@@ -67,6 +75,8 @@ export default function Account({
             placeholder="Placeholder"
             className="bg-transparent outline-none flex-grow"
             value={username}
+            required={true}
+            onChange={(e) => updateFields({ username: e.target.value })}
           />
         </div>
       </div>
@@ -81,6 +91,8 @@ export default function Account({
             placeholder="Placeholder"
             className="bg-transparent outline-none flex-grow"
             value={email}
+            required={true}
+            onChange={(e) => updateFields({ email: e.target.value })}
           />
         </div>
       </div>
@@ -95,6 +107,8 @@ export default function Account({
             placeholder="Placeholder"
             className="bg-transparent outline-none flex-grow"
             value={password}
+            required={true}
+            onChange={(e) => updateFields({ password: e.target.value })}
           />
         </div>
       </div>
@@ -112,6 +126,8 @@ export default function Account({
             placeholder="Placeholder"
             className="bg-transparent outline-none flex-grow"
             value={confirmPassword}
+            required={true}
+            onChange={(e) => updateFields({ confirmPassword: e.target.value })}
           />
         </div>
       </div>

@@ -9,7 +9,7 @@ import {
   faGlobe,
 } from "@fortawesome/free-solid-svg-icons";
 
-type AddressProps = {
+type UserData = {
   address1: string;
   address2: string;
   country: string;
@@ -17,6 +17,10 @@ type AddressProps = {
   zipCode: string;
   company: string;
   phoneNumber: string;
+};
+
+type AddressProps = UserData & {
+  updateFields: (fields: Partial<UserData>) => void;
 };
 
 const Address: React.FC<AddressProps> = ({
@@ -27,6 +31,7 @@ const Address: React.FC<AddressProps> = ({
   zipCode,
   company,
   phoneNumber,
+  updateFields,
 }) => {
   return (
     <div className="max-w-md mx-auto mt-10 space-y-6">
@@ -43,6 +48,8 @@ const Address: React.FC<AddressProps> = ({
             type="text"
             placeholder="Placeholder"
             value={address1}
+            required={true}
+            onChange={(e) => updateFields({ address1: e.target.value })}
             className="bg-transparent outline-none flex-grow"
           />
         </div>
@@ -61,6 +68,7 @@ const Address: React.FC<AddressProps> = ({
             type="text"
             placeholder="Placeholder"
             value={address2}
+            onChange={(e) => updateFields({ address2: e.target.value })}
             className="bg-transparent outline-none flex-grow"
           />
         </div>
@@ -76,6 +84,8 @@ const Address: React.FC<AddressProps> = ({
             type="text"
             placeholder="Placeholder"
             value={country}
+            required={true}
+            onChange={(e) => updateFields({ country: e.target.value })}
             className="bg-transparent outline-none flex-grow"
           />
         </div>
@@ -89,6 +99,8 @@ const Address: React.FC<AddressProps> = ({
             type="text"
             placeholder="Placeholder"
             value={city}
+            required={true}
+            onChange={(e) => updateFields({ city: e.target.value })}
             className="bg-transparent outline-none flex-grow"
           />
         </div>
@@ -104,6 +116,8 @@ const Address: React.FC<AddressProps> = ({
             type="text"
             placeholder="Placeholder"
             value={zipCode}
+            required={true}
+            onChange={(e) => updateFields({ zipCode: e.target.value })}
             className="bg-transparent outline-none flex-grow"
           />
         </div>
@@ -119,6 +133,7 @@ const Address: React.FC<AddressProps> = ({
             type="text"
             placeholder="Placeholder"
             value={company}
+            onChange={(e) => updateFields({ company: e.target.value })}
             className="bg-transparent outline-none flex-grow"
           />
         </div>
@@ -134,6 +149,7 @@ const Address: React.FC<AddressProps> = ({
             type="text"
             placeholder="Placeholder"
             value={phoneNumber}
+            onChange={(e) => updateFields({ company: e.target.value })}
             className="bg-transparent outline-none flex-grow"
           />
         </div>
