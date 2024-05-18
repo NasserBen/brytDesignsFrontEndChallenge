@@ -1,14 +1,15 @@
-"use client";
+// "use client";
 
 import { faFontAwesome } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+// import { useState } from "react";
+import Link from "next/link";
 
 export default function Home() {
-  const [name, setName] = useState("World");
+  // const [name, setName] = useState("World");
   return (
     <main className="w-screen h-screen flex flex-col gap-8 justify-center items-center max-w-2xl mx-auto">
-      <h1 className="text-6xl">Hello {name} and good luck 😄!</h1>
+      <h1 className="text-6xl">Hello World and good luck 😄!</h1>
       <h3 className="text-3xl font-semibold">
         For this one, please stick to React, Zod, CSS and tailwindcss! 💃
       </h3>
@@ -26,7 +27,7 @@ export default function Home() {
         </a>{" "}
         or whatever icon library you want to use :3
       </p>
-      <form>
+      {/* <form>
         <input
           className="border-2 border-yellow-500 rounded p-4 text-2xl w-full dark:bg-black dark:text-gray-300 dark:placeholder:text-gray-400"
           name="name"
@@ -34,7 +35,8 @@ export default function Home() {
           value={name}
           onChange={({ target }) => setName(target.value)}
         />
-      </form>
+      </form> */}
+      <Link href="/multiStepForm" className="hover:underline">Go To Multi-Step Form</Link>
     </main>
   );
 }
